@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cuentas.api.cuentasapi.DtoModels.CashFlowDto;
 import cuentas.api.cuentasapi.models.CashFlow;
+import cuentas.api.cuentasapi.models.CashFlowGroup;
 import cuentas.api.cuentasapi.models.SearchCashFlow;
 import cuentas.api.cuentasapi.repositories.CashFlowGroupsRepository;
 import cuentas.api.cuentasapi.repositories.CashFlowsRepository;;
@@ -101,7 +102,11 @@ public class CashFlowController {
 	}
 
 	private CashFlow mapFromDto(CashFlowDto cashFlowDto){
-		int cashFlowGroupName=cashFlowGroupsRepository.findByName(cashFlowDto.getCashFlowGroup()).get(0).getId();
+		List<CashFlowGroup> group = cashFlowGroupsRepository.findByName(cashFlowDto.getCashFlowGroup());
+		int cashFlowGroupName = 1;
+
+		if(!group.isEmpty())
+			cashFlowGroupName = group.get(0).getId();
 		return new CashFlow(
 			cashFlowDto.getId(),
 			cashFlowDto.getCreationDate(),
