@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import cuentas.api.cuentasapi.models.CashFlowGroup;
 import cuentas.api.cuentasapi.repositories.CashFlowGroupsRepository;
 
-@CrossOrigin(origins = { "http://localhost:3000", "http://localhost:4200" })
+@CrossOrigin(origins = { "http://localhost:3000", "http://localhost:4200", "https://abbaco-spa.herokuapp.com/" })
 @RestController
 public class CashFlowGroupController {
 
