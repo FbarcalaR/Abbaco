@@ -21,7 +21,7 @@ import cuentas.api.cuentasapi.models.SearchCashFlow;
 import cuentas.api.cuentasapi.repositories.CashFlowGroupsRepository;
 import cuentas.api.cuentasapi.repositories.CashFlowsRepository;;
 
-@CrossOrigin(origins = { "http://localhost:3000", "http://localhost:4200", "https://abbaco-spa.herokuapp.com/" })
+@CrossOrigin(origins = { "http://localhost:3000", "http://localhost:4200", "https://abbaco-spa.herokuapp.com" })
 @RestController
 public class CashFlowController {
 
