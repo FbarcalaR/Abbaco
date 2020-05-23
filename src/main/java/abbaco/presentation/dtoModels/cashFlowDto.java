@@ -3,7 +3,7 @@ package abbaco.presentation.dtoModels;
 import java.util.Date;
 import java.util.UUID;
     
-public class CashFlowDto {
+public class CashFlowDto{
     private UUID id;
     private String title;
     private int classificationId;
