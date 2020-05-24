@@ -1,36 +1,41 @@
 package abbaco.entities.models;
 
 import java.util.Date;
-import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@Table(name = "cashflows")
 public class CashFlow {    
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private UUID id;
+    private String id;
     private String title;
+    private String classificationId;
+	@Temporal(TemporalType.DATE)
+	private Date creationDate;
+    private double cashAmount;
 
-    public CashFlow(UUID id, String title, int classificationId, Date creationDate, double cashAmount) {
+    
+	public CashFlow() {}
+
+    public CashFlow(String id, String title, String classificationId, Date creationDate, double cashAmount) {
         this.id = id;
         this.title = title;
         this.classificationId = classificationId;
         this.creationDate = creationDate;
         this.cashAmount = cashAmount;
     }
-    private int classificationId;
 
-    public UUID getId() {
+    public String getId() {
         return this.id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -42,11 +47,11 @@ public class CashFlow {
         this.title = title;
     }
 
-    public int getClassificationId() {
+    public String getClassificationId() {
         return this.classificationId;
     }
 
-    public void setClassificationId(int classificationId) {
+    public void setClassificationId(String classificationId) {
         this.classificationId = classificationId;
     }
 
@@ -65,7 +70,4 @@ public class CashFlow {
     public void setCashAmount(double cashAmount) {
         this.cashAmount = cashAmount;
     }
-	@Temporal(TemporalType.DATE)
-	private Date creationDate;
-    private double cashAmount;
 }

@@ -1,9 +1,7 @@
 package abbaco.presentation.controllers;
 
 import java.util.Collection;
-import java.util.Date;
 import java.util.LinkedList;
-import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -18,7 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import abbaco.entities.models.CashFlow;
@@ -52,8 +49,8 @@ public class CashFlowsController {
 	}
 
 	@GetMapping("/{id}")
-	EntityModel<CashFlowDto> getById(@PathVariable UUID id) {
-		CashFlowDto cashFlowResult = modelMapper.map(cashFlowsService.getById(id), CashFlowDto.class);
+	EntityModel<CashFlowDto> getById(@PathVariable String id) {
+		CashFlowDto cashFlowResult = modelMapper.map(cashFlowsService.getById(id).get(), CashFlowDto.class);
 
 		return EntityModel.of(cashFlowResult,
 		linkTo(methodOn(CashFlowsController.class).getById(id)).withSelfRel());
@@ -66,7 +63,7 @@ public class CashFlowsController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteCashFlow( @PathVariable UUID id) {
+	public ResponseEntity<Void> deleteCashFlow( @PathVariable String id) {
 		cashFlowsService.delete(id);
 		return ResponseEntity.ok().build();
 	}

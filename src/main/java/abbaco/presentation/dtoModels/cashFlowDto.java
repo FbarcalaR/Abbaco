@@ -1,17 +1,17 @@
 package abbaco.presentation.dtoModels;
 
 import java.util.Date;
-import java.util.UUID;
     
 public class CashFlowDto{
-    private UUID id;
+    private String id;
     private String title;
-    private int classificationId;
+    private String classificationId;
 	private Date creationDate;
     private double cashAmount;
     
+	public CashFlowDto() {}
 
-    public CashFlowDto(UUID id, String title, int classificationId, Date creationDate, double cashAmount) {
+    public CashFlowDto(String id, String title, String classificationId, Date creationDate, double cashAmount) {
         this.id = id;
         this.title = title;
         this.classificationId = classificationId;
@@ -19,11 +19,11 @@ public class CashFlowDto{
         this.cashAmount = cashAmount;
     }
 
-    public UUID getId() {
+    public String getId() {
         return this.id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -35,11 +35,11 @@ public class CashFlowDto{
         this.title = title;
     }
 
-    public int getClassificationId() {
+    public String getClassificationId() {
         return this.classificationId;
     }
 
-    public void setClassificationId(int classificationId) {
+    public void setClassificationId(String classificationId) {
         this.classificationId = classificationId;
     }
 

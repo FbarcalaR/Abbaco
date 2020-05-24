@@ -1,7 +1,6 @@
 package abbaco.usecases;
 
 import java.util.Optional;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,7 @@ public class CashFlowService {
         return cashFlowsRepository.findAll();
     }
 
-    public Optional<CashFlow> getById(UUID id){
+    public Optional<CashFlow> getById(String id){
         return cashFlowsRepository.findById(id);
     }
 
@@ -27,7 +26,7 @@ public class CashFlowService {
         return cashFlowsRepository.save(cashFlow);
     }
 
-    public void delete(UUID id){
+    public void delete(String id){
         cashFlowsRepository.deleteById(id);
     }
 }
