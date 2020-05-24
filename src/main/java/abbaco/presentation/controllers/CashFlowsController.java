@@ -1,37 +1,73 @@
 package abbaco.presentation.controllers;
 
-import java.util.List;
+import java.util.Collection;
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.UUID;
 
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import abbaco.entities.models.CashFlow;
 import abbaco.presentation.dtoModels.CashFlowDto;
+import abbaco.usecases.CashFlowService;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/cash-flows")
 public class CashFlowsController {
+    @Autowired
+	private CashFlowService cashFlowsService;
+	
+    @Autowired
+    private ModelMapper modelMapper;
+	
 
-    //TODO: add when ready
-    // @Autowired
-    // CashFlowsService cashFlowsService;
-    
+	@GetMapping
+	CollectionModel<EntityModel<CashFlowDto>> getAll() {
+		java.lang.reflect.Type targetListType = new TypeToken<Collection<CashFlowDto>>(){}.getType();
+		Collection<CashFlowDto> cashFlowsDtos = modelMapper.map(cashFlowsService.getAll(), targetListType);
+		
+		Collection<EntityModel<CashFlowDto>> cashFlowsEntities = new LinkedList<>();
 
-	@GetMapping("/cash-flows/{id}")
-	EntityModel<CashFlowDto> one(@PathVariable UUID id) {
+		for (CashFlowDto cashFlowDto : cashFlowsDtos) {
+			EntityModel<CashFlowDto> cEntityModel = EntityModel.of(cashFlowDto, linkTo(methodOn(CashFlowsController.class).getById(cashFlowDto.getId())).withSelfRel());
+			cashFlowsEntities.add(cEntityModel);
+		}
 
-		// CashFlowDto employee = repository.findById(id)
-		// .orElseThrow(() -> new EmployeeNotFoundException(id))
-		// .map<CashFlowDto>();
+		return CollectionModel.of(cashFlowsEntities,
+		linkTo(methodOn(CashFlowsController.class).getAll()).withSelfRel());
+	}
 
-		EntityModel result = new EntityModel<>(new CashFlowDto(id, null, 0, null, 0),
-		linkTo(methodOn(CashFlowsController.class).one(id)).withSelfRel());
-		return result;
+	@GetMapping("/{id}")
+	EntityModel<CashFlowDto> getById(@PathVariable UUID id) {
+		CashFlowDto cashFlowResult = modelMapper.map(cashFlowsService.getById(id), CashFlowDto.class);
+
+		return EntityModel.of(cashFlowResult,
+		linkTo(methodOn(CashFlowsController.class).getById(id)).withSelfRel());
+	}
+
+	@PostMapping
+	public ResponseEntity<Void> add(@RequestBody CashFlowDto cashFlowDto){
+		cashFlowsService.add(modelMapper.map(cashFlowDto, CashFlow.class));
+		return ResponseEntity.ok().build();
+	}
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> deleteCashFlow( @PathVariable UUID id) {
+		cashFlowsService.delete(id);
+		return ResponseEntity.ok().build();
 	}
 } 
