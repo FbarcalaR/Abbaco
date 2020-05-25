@@ -33,7 +33,7 @@ public class CashFlowsController {
 	
 
 	@GetMapping
-	CollectionModel<EntityModel<CashFlowDto>> getAll() {
+	public CollectionModel<EntityModel<CashFlowDto>> getAll() {
 		java.lang.reflect.Type targetListType = new TypeToken<Collection<CashFlowDto>>(){}.getType();
 		Collection<CashFlowDto> cashFlowsDtos = modelMapper.map(cashFlowsService.getAll(), targetListType);
 		
