@@ -1,14 +1,19 @@
 package abbaco.presentation.mappers;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import abbaco.entities.models.CashFlow;
 import abbaco.presentation.dtoModels.CashFlowDto;
 
 @Mapper(componentModel = "spring")
 public interface CashFlowDtoEntityMapper {
+    
+    @Mapping(target = "id", ignore = true)
     CashFlow CashFlowDtoToCashFlow(CashFlowDto source);
-    CashFlowDto cashFlowToCashFlowDto(CashFlow destination);
+    
+    @Mapping(source = "source.creationDate", target = "creationDate", dateFormat = "dd.MM.yyyy")
+    CashFlowDto cashFlowToCashFlowDto(CashFlow source);
 
 
     Iterable<CashFlow> CashFlowDtoToCashFlow(Iterable<CashFlowDto> source);
