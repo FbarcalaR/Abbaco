@@ -12,7 +12,7 @@ public class CashFlowClassifier {
     private int code;
     private String name;
 
-    CashFlowClassifier(){}
+    public CashFlowClassifier(){}
 
     public CashFlowClassifier(String id, int code, String name) {
         this.id = id;

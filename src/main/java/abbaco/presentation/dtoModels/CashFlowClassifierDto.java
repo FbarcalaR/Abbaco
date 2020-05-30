@@ -5,7 +5,7 @@ public class CashFlowClassifierDto {
     private int code;
     private String name;
 
-    CashFlowClassifierDto(){}
+    public CashFlowClassifierDto(){}
 
     public CashFlowClassifierDto(String id, int code, String name) {
         this.id = id;

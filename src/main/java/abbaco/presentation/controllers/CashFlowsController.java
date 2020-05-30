@@ -3,8 +3,6 @@ package abbaco.presentation.controllers;
 import java.util.Collection;
 import java.util.LinkedList;
 
-import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 import org.springframework.hateoas.CollectionModel;
@@ -18,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import abbaco.entities.models.CashFlow;
 import abbaco.presentation.dtoModels.CashFlowDto;
+import abbaco.presentation.mappers.CashFlowDtoEntityMapper;
 import abbaco.usecases.CashFlowService;
 
 @RestController
@@ -28,15 +26,13 @@ public class CashFlowsController {
     @Autowired
 	private CashFlowService cashFlowsService;
 	
-    @Autowired
-    private ModelMapper modelMapper;
+	@Autowired
+	private CashFlowDtoEntityMapper mapper;
 	
-
 	@GetMapping
 	public CollectionModel<EntityModel<CashFlowDto>> getAll() {
-		java.lang.reflect.Type targetListType = new TypeToken<Collection<CashFlowDto>>(){}.getType();
-		Collection<CashFlowDto> cashFlowsDtos = modelMapper.map(cashFlowsService.getAll(), targetListType);
-		
+		Iterable<CashFlowDto> cashFlowsDtos = mapper.cashFlowToCashFlowDto(cashFlowsService.getAll());
+
 		Collection<EntityModel<CashFlowDto>> cashFlowsEntities = new LinkedList<>();
 
 		for (CashFlowDto cashFlowDto : cashFlowsDtos) {
@@ -50,7 +46,7 @@ public class CashFlowsController {
 
 	@GetMapping("/{id}")
 	EntityModel<CashFlowDto> getById(@PathVariable String id) {
-		CashFlowDto cashFlowResult = modelMapper.map(cashFlowsService.getById(id).get(), CashFlowDto.class);
+		CashFlowDto cashFlowResult = mapper.cashFlowToCashFlowDto(cashFlowsService.getById(id).get());
 
 		return EntityModel.of(cashFlowResult,
 		linkTo(methodOn(CashFlowsController.class).getById(id)).withSelfRel());
@@ -58,7 +54,7 @@ public class CashFlowsController {
 
 	@PostMapping
 	public ResponseEntity<Void> add(@RequestBody CashFlowDto cashFlowDto){
-		cashFlowsService.add(modelMapper.map(cashFlowDto, CashFlow.class));
+		cashFlowsService.add(mapper.CashFlowDtoToCashFlow(cashFlowDto));
 		return ResponseEntity.ok().build();
 	}
 
