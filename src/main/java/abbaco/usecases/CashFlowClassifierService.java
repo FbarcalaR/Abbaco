@@ -16,10 +16,11 @@ public class CashFlowClassifierService {
     }
 
     public CashFlowClassifier add(CashFlowClassifier cashFlowClassifier){
+        cashFlowClassifier.setCode((int) cashFlowClassifierRepository.count());
         return cashFlowClassifierRepository.save(cashFlowClassifier);
     }
 
-    public void delete(String id){
+    public void delete(Long id){
         cashFlowClassifierRepository.deleteById(id);
     }
 }

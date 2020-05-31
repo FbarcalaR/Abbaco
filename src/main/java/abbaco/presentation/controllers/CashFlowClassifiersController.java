@@ -40,7 +40,7 @@ public class CashFlowClassifiersController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteCashFlow( @PathVariable String id) {
+	public ResponseEntity<Void> deleteCashFlow( @PathVariable Long id) {
 		cashFlowClassifierService.delete(id);
 		return ResponseEntity.ok().build();
 	}

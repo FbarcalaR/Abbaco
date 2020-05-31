@@ -10,9 +10,12 @@ import abbaco.presentation.dtoModels.CashFlowDto;
 public interface CashFlowDtoEntityMapper {
     
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "cashFlowClassifier.id", source = "classificationId")
     CashFlow CashFlowDtoToCashFlow(CashFlowDto source);
     
     @Mapping(source = "source.creationDate", target = "creationDate", dateFormat = "dd.MM.yyyy")
+    @Mapping(target = "classificationId", source = "cashFlowClassifier.id")
+    @Mapping(target = "classification", source = "cashFlowClassifier.name")
     CashFlowDto cashFlowToCashFlowDto(CashFlow source);
 
 

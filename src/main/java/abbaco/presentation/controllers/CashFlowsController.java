@@ -45,7 +45,7 @@ public class CashFlowsController {
 	}
 
 	@GetMapping("/{id}")
-	EntityModel<CashFlowDto> getById(@PathVariable String id) {
+	EntityModel<CashFlowDto> getById(@PathVariable Long id) {
 		CashFlowDto cashFlowResult = mapper.cashFlowToCashFlowDto(cashFlowsService.getById(id).get());
 
 		return EntityModel.of(cashFlowResult,
@@ -59,7 +59,7 @@ public class CashFlowsController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteCashFlow( @PathVariable String id) {
+	public ResponseEntity<Void> deleteCashFlow( @PathVariable Long id) {
 		cashFlowsService.delete(id);
 		return ResponseEntity.ok().build();
 	}

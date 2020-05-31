@@ -3,27 +3,29 @@ package abbaco.presentation.dtoModels;
 import java.util.Date;
     
 public class CashFlowDto{
-    private String id;
+    private Long id;
     private String title;
+    private String classification;
     private String classificationId;
 	private Date creationDate;
     private double cashAmount;
     
 	public CashFlowDto() {}
 
-    public CashFlowDto(String id, String title, String classificationId, Date creationDate, double cashAmount) {
+    public CashFlowDto(Long id, String title, String classificationId, String classification, Date creationDate, double cashAmount) {
         this.id = id;
         this.title = title;
         this.classificationId = classificationId;
+        this.classification = classification;
         this.creationDate = creationDate;
         this.cashAmount = cashAmount;
     }
 
-    public String getId() {
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -41,6 +43,14 @@ public class CashFlowDto{
 
     public void setClassificationId(String classificationId) {
         this.classificationId = classificationId;
+    }
+
+    public String getClassification() {
+        return this.classification;
+    }
+
+    public void setClassification(String classification) {
+        this.classification = classification;
     }
 
     public Date getCreationDate() {

@@ -11,6 +11,7 @@ public interface CashFlowClassifierDtoEntityMapper {
     
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "code", ignore = true)
     CashFlowClassifier CashFlowClassifierDtoToCashFlowClassifier(CashFlowClassifierDto source);
 
     CashFlowClassifierDto cashFlowClassifierToCashFlowClassifierDto(CashFlowClassifier source);

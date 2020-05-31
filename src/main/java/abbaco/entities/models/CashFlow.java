@@ -3,38 +3,48 @@ package abbaco.entities.models;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import abbaco.entities.configuration.RandomIdGenerator;
+
 @Entity
 @Table(name = "cashflows")
-public class CashFlow {    
+public class CashFlow {
     @Id
-    private String id;
+    @GeneratedValue(generator = RandomIdGenerator.generatorName)
+    @GenericGenerator(name = RandomIdGenerator.generatorName, strategy = "abbaco.entities.configuration.RandomIdGenerator")
+    private Long id;
     private String title;
-    private String classificationId;
 	@Temporal(TemporalType.DATE)
 	private Date creationDate;
     private double cashAmount;
 
-    
-	public CashFlow() {}
+    @ManyToOne
+    private CashFlowClassifier cashFlowClassifier;
 
-    public CashFlow(String id, String title, String classificationId, Date creationDate, double cashAmount) {
+    
+    public CashFlow() {}
+
+    public CashFlow(Long id, String title, Date creationDate, double cashAmount, CashFlowClassifier cashFlowClassifier) {
         this.id = id;
         this.title = title;
-        this.classificationId = classificationId;
         this.creationDate = creationDate;
         this.cashAmount = cashAmount;
+        this.cashFlowClassifier = cashFlowClassifier;
     }
 
-    public String getId() {
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -44,14 +54,6 @@ public class CashFlow {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getClassificationId() {
-        return this.classificationId;
-    }
-
-    public void setClassificationId(String classificationId) {
-        this.classificationId = classificationId;
     }
 
     public Date getCreationDate() {
@@ -69,4 +71,13 @@ public class CashFlow {
     public void setCashAmount(double cashAmount) {
         this.cashAmount = cashAmount;
     }
+
+    public CashFlowClassifier getCashFlowClassifier() {
+        return this.cashFlowClassifier;
+    }
+
+    public void setCashFlowClassifier(CashFlowClassifier cashFlowClassifier) {
+        this.cashFlowClassifier = cashFlowClassifier;
+    }
+
 }

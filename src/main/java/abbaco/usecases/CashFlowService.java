@@ -18,7 +18,7 @@ public class CashFlowService {
         return cashFlowsRepository.findAll();
     }
 
-    public Optional<CashFlow> getById(String id){
+    public Optional<CashFlow> getById(Long id){
         return cashFlowsRepository.findById(id);
     }
 
@@ -26,7 +26,7 @@ public class CashFlowService {
         return cashFlowsRepository.save(cashFlow);
     }
 
-    public void delete(String id){
+    public void delete(Long id){
         cashFlowsRepository.deleteById(id);
     }
 }
