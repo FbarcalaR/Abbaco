@@ -13,7 +13,7 @@ public class RandomIdGenerator implements IdentifierGenerator {
     @Override
     public Serializable generate(SharedSessionContractImplementor session, Object object) throws HibernateException {
         long leftLimit = 0L;
-        long rightLimit = Long.MAX_VALUE;
+        long rightLimit = 9007199254740990L;
         return leftLimit + (long) (Math.random() * (rightLimit - leftLimit));
     }
 }

@@ -6,13 +6,13 @@ public class CashFlowDto{
     private Long id;
     private String title;
     private String classification;
-    private String classificationId;
+    private Long classificationId;
 	private Date creationDate;
     private double cashAmount;
     
 	public CashFlowDto() {}
 
-    public CashFlowDto(Long id, String title, String classificationId, String classification, Date creationDate, double cashAmount) {
+    public CashFlowDto(Long id, String title, Long classificationId, String classification, Date creationDate, double cashAmount) {
         this.id = id;
         this.title = title;
         this.classificationId = classificationId;
@@ -37,11 +37,11 @@ public class CashFlowDto{
         this.title = title;
     }
 
-    public String getClassificationId() {
+    public Long getClassificationId() {
         return this.classificationId;
     }
 
-    public void setClassificationId(String classificationId) {
+    public void setClassificationId(Long classificationId) {
         this.classificationId = classificationId;
     }
 
