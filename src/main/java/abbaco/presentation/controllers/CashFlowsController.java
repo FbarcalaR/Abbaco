@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import abbaco.presentation.dtoModels.CashFlowDto;
+import abbaco.presentation.dtoModels.CashFlowFiltersDto;
 import abbaco.presentation.mappers.CashFlowDtoEntityMapper;
 import abbaco.usecases.CashFlowService;
 
@@ -32,7 +34,7 @@ public class CashFlowsController {
 	private CashFlowDtoEntityMapper mapper;
 	
 	@GetMapping
-	public CollectionModel<EntityModel<CashFlowDto>> getAll() {
+	public CollectionModel<EntityModel<CashFlowDto>> getAll(CashFlowFiltersDto cashFlowFiltersDto) {
 		Iterable<CashFlowDto> cashFlowsDtos = mapper.cashFlowToCashFlowDto(cashFlowsService.getAll());
 
 		Collection<EntityModel<CashFlowDto>> cashFlowsEntities = new LinkedList<>();
@@ -43,7 +45,7 @@ public class CashFlowsController {
 		}
 
 		return CollectionModel.of(cashFlowsEntities,
-		linkTo(methodOn(CashFlowsController.class).getAll()).withSelfRel());
+		linkTo(methodOn(CashFlowsController.class).getAll(cashFlowFiltersDto)).withSelfRel());
 	}
 
 	@GetMapping("/{id}")

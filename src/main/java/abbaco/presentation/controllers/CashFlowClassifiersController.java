@@ -3,11 +3,8 @@ package abbaco.presentation.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
-import java.util.Collection;
-import java.util.LinkedList;
 
 import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import abbaco.presentation.dtoModels.CashFlowClassifierDto;
+import abbaco.presentation.dtoModels.CashFlowFiltersDto;
 import abbaco.presentation.mappers.CashFlowClassifierDtoEntityMapper;
 import abbaco.usecases.CashFlowClassifierService;
 
@@ -37,7 +35,7 @@ public class CashFlowClassifiersController {
 		 Iterable<CashFlowClassifierDto> cashFlowsDtos = mapper.cashFlowClassifierToCashFlowClassifierDto(cashFlowClassifierService.getAll());
 
 		return CollectionModel.of(cashFlowsDtos,
-		linkTo(methodOn(CashFlowsController.class).getAll()).withSelfRel());
+		linkTo(methodOn(CashFlowsController.class).getAll(new CashFlowFiltersDto())).withSelfRel());
 	}
 
 	@PostMapping
