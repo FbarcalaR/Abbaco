@@ -11,14 +11,14 @@ public class CashFlowFiltersDto {
     private Long classificationId;
     private Date minDate;
     private Date maxDate;
-    private double minCashAmount;
-    private double maxCashAmount;
+    private Double minCashAmount;
+    private Double maxCashAmount;
 
     public CashFlowFiltersDto() {
     }
 
-    public CashFlowFiltersDto(String title, Long classificationId, Date minDate, Date maxDate, double minCashAmount,
-            double maxCashAmount) {
+    public CashFlowFiltersDto(String title, Long classificationId, Date minDate, Date maxDate, Double minCashAmount,
+            Double maxCashAmount) {
         this.title = title;
         this.classificationId = classificationId;
         this.minDate = minDate;
@@ -73,7 +73,7 @@ public class CashFlowFiltersDto {
         }
     }
 
-    public double getMinCashAmount() {
+    public Double getMinCashAmount() {
         return this.minCashAmount;
     }
 
@@ -81,7 +81,7 @@ public class CashFlowFiltersDto {
         this.minCashAmount = Double.parseDouble(minCashAmount);
     }
 
-    public double getMaxCashAmount() {
+    public Double getMaxCashAmount() {
         return this.maxCashAmount;
     }
 
