@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import abbaco.presentation.dtoModels.CashFlowDto;
+import abbaco.presentation.dtoModels.CashFlowFiltersDto;
 import abbaco.presentation.mappers.CashFlowDtoEntityMapper;
+import abbaco.presentation.mappers.CashFlowFiltersDtoSvcMapper;
+import abbaco.usecases.CashFlowFiltersSvc;
 import abbaco.usecases.CashFlowService;
 
 @RestController
@@ -27,13 +30,15 @@ import abbaco.usecases.CashFlowService;
 public class CashFlowsController {
     @Autowired
 	private CashFlowService cashFlowsService;
-	
 	@Autowired
-	private CashFlowDtoEntityMapper mapper;
+	private CashFlowDtoEntityMapper cashFlowsMapper;
+	@Autowired
+	private CashFlowFiltersDtoSvcMapper filtersMapper;
 	
 	@GetMapping
-	public CollectionModel<EntityModel<CashFlowDto>> getAll() {
-		Iterable<CashFlowDto> cashFlowsDtos = mapper.cashFlowToCashFlowDto(cashFlowsService.getAll());
+	public CollectionModel<EntityModel<CashFlowDto>> getAll(CashFlowFiltersDto cashFlowFiltersDto) {
+		CashFlowFiltersSvc filtersSvc = filtersMapper.cashFlowFiltersDtoToCashFlowFiltersSvc(cashFlowFiltersDto);
+		Iterable<CashFlowDto> cashFlowsDtos = cashFlowsMapper.cashFlowToCashFlowDto(cashFlowsService.getAllFiltered(filtersSvc));
 
 		Collection<EntityModel<CashFlowDto>> cashFlowsEntities = new LinkedList<>();
 
@@ -43,12 +48,12 @@ public class CashFlowsController {
 		}
 
 		return CollectionModel.of(cashFlowsEntities,
-		linkTo(methodOn(CashFlowsController.class).getAll()).withSelfRel());
+		linkTo(methodOn(CashFlowsController.class).getAll(cashFlowFiltersDto)).withSelfRel());
 	}
 
 	@GetMapping("/{id}")
 	EntityModel<CashFlowDto> getById(@PathVariable Long id) {
-		CashFlowDto cashFlowResult = mapper.cashFlowToCashFlowDto(cashFlowsService.getById(id).get());
+		CashFlowDto cashFlowResult = cashFlowsMapper.cashFlowToCashFlowDto(cashFlowsService.getById(id).get());
 
 		return EntityModel.of(cashFlowResult,
 		linkTo(methodOn(CashFlowsController.class).getById(id)).withSelfRel());
@@ -56,7 +61,7 @@ public class CashFlowsController {
 
 	@PostMapping
 	public ResponseEntity<Void> add(@RequestBody CashFlowDto cashFlowDto){
-		cashFlowsService.add(mapper.CashFlowDtoToCashFlow(cashFlowDto));
+		cashFlowsService.add(cashFlowsMapper.CashFlowDtoToCashFlow(cashFlowDto));
 		return ResponseEntity.ok().build();
 	}
 
