@@ -3,6 +3,8 @@ package abbaco.presentation.controllers;
 import java.util.Collection;
 import java.util.LinkedList;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 import org.springframework.hateoas.CollectionModel;
@@ -36,7 +38,7 @@ public class CashFlowsController {
 	private CashFlowFiltersDtoSvcMapper filtersMapper;
 	
 	@GetMapping
-	public CollectionModel<EntityModel<CashFlowDto>> getAll(CashFlowFiltersDto cashFlowFiltersDto) {
+	public CollectionModel<EntityModel<CashFlowDto>> getAll(@Valid CashFlowFiltersDto cashFlowFiltersDto) {
 		CashFlowFiltersSvc filtersSvc = filtersMapper.cashFlowFiltersDtoToCashFlowFiltersSvc(cashFlowFiltersDto);
 		Iterable<CashFlowDto> cashFlowsDtos = cashFlowsMapper.cashFlowToCashFlowDto(cashFlowsService.getAllFiltered(filtersSvc));
 
@@ -60,7 +62,7 @@ public class CashFlowsController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Void> add(@RequestBody CashFlowDto cashFlowDto){
+	public ResponseEntity<Void> add(@RequestBody @Valid CashFlowDto cashFlowDto){
 		cashFlowsService.add(cashFlowsMapper.CashFlowDtoToCashFlow(cashFlowDto));
 		return ResponseEntity.ok().build();
 	}

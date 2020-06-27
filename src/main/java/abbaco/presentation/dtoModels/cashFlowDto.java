@@ -1,13 +1,22 @@
 package abbaco.presentation.dtoModels;
 
 import java.util.Date;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
     
 public class CashFlowDto{
     private Long id;
+    @NotNull
+    @Pattern(regexp = "^[0-9a-zA-ZñÑçÇ ]*$")
     private String title;
+    @Pattern(regexp = "^[0-9a-zA-ZñÑçÇ ]*$")
     private String classification;
+    @NotNull
     private Long classificationId;
+    @NotNull
 	private Date creationDate;
+    @NotNull
     private double cashAmount;
     
 	public CashFlowDto() {}
