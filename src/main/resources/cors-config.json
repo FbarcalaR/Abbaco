@@ -1,0 +1,16 @@
+[
+    {
+      "origin": [
+        "https://abbaco-spa-281920.oa.r.appspot.com/"
+      ],
+      "responseHeader": [
+        "Content-Type"
+      ],
+      "method": [
+        "GET",
+        "POST",
+        "DELETE"
+      ],
+      "maxAgeSeconds": 3600
+    }
+  ]

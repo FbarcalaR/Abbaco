@@ -28,7 +28,7 @@ import abbaco.usecases.CashFlowService;
 
 @RestController
 @RequestMapping("/api/cash-flows")
-@CrossOrigin(origins = { "http://localhost:3000" })
+@CrossOrigin
 public class CashFlowsController {
     @Autowired
 	private CashFlowService cashFlowsService;
