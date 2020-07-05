@@ -22,7 +22,7 @@ import abbaco.usecases.CashFlowClassifierService;
 
 @RestController
 @RequestMapping("/api/cash-flow-classifiers")
-@CrossOrigin(origins = { "http://localhost:3000" })
+@CrossOrigin
 public class CashFlowClassifiersController {
     @Autowired
 	private CashFlowClassifierService cashFlowClassifierService;

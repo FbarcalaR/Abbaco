@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "abbaco-api-282309",
+  "private_key_id": "026e56b1fdb4cf61f719ccbef49604dc9385e4fc",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC3LByuFxy8JHvH\nxLAk/agc87peqi/49WnKvn/i7wwaSSbuohLhyNsrlTAmNhdGXFOcadALyESmwrHl\n1Se2NPxVGQ2yh+2HRj3P+vL57m7d6jErsz651Md+fzTa50CphUGTzvsldYJTE2S2\nJxnmtUessASUCbotp3WkJEKHGDRfoLu/nnLG+5BeiUm6DV/45qvfnyzTF0fD9BvA\n/3Qe5Z4htedeXqr/+ev5i+NfAFxxOKzl5ksTmgDaMFo7XUvDoDM+vrvZd6ZL+P2j\nWMa/1GEl8dqkI+mnV7Yw8lZ5vJIUsncfizPrfSn35hK3+3bl3yN6c/mkQCTahOVQ\ntDmgnenFAgMBAAECggEAALgHMy+01ZAwsPhp1vTssGBmGAtqI/uVx+cdFvjoZUBp\n1+a1VQ/pIq/aAB+XBWTekLvH+aPcxE+TS/TQMq9DWXO/UZ0/wDFbk/HG+yNSaaok\nbNvhOfCtCVp0DKZHr+Kgy6gbGDe9cTIF44+Ehhrdn/HfTFPVcgRsOit73CfeKY0b\nbFh15yu4rzX32E21kfAhU0iLq9dF3GKpPCGCI7Yq1ePZvQSaF2lolrS8qBJNKA4l\ns3HdsvAYjvSqAFv/YETZtTmRw9I5aYgp8AvvO8Y1XI3d5cMePM8L0RImD+biaZfz\nh/2NiQ9cFA8qGiRgfCcl6kxMU2axeb4dCYqizqnXaQKBgQD0srYWC+fEUud2rh9p\nDpLJchvgFZPRvnEVL+ldPkIb33A4jX2Jf0y4yYlRFcIeAJcN2i83Us/hDjtcrAFz\n9Tge39uLHgIA7AcYDUeYyyieJbNRT+jyF5DNfPvCo+Go/8ZuMY4+Q6KTE7DTpmIN\nZiZYizu9HHiAd1mzckWlaEPYVwKBgQC/oezkdpLyInj1z9tgxZl+romEGCUAg5lN\nC16twBWgdb6v8TANLyie97+F74GALNhogmRSQZdELK5dSa+25N/w3J7rqlm+TUGn\nRJOwCYf+XC9bHd6ZrMHoMDckTr3uk/Z2E4cvkkKQTau6yEOWW9tczfZSVDPbsTbC\nvB6a47MtQwKBgQDwZ3+TS2EJtbWoGMvNSD8YYN5YGnrezy6EdUzdieQjRDMZrJDQ\nfFvhFEevfSP4m/XL6zcGMHsBjhzuICNRTHM1ihNEq1emlj0l+S4FRFuEfF+fHFYt\nOs/NwuQJxz5V7eyCqHcqXwKjYu4QEmA0783uoeQwGH+fHyLmtPcN2dEGAwKBgEoN\n2yvWnqavp6rmblKRSeXosP+5DOOL93wMfsQKTNE7bzsyq20M4le8SekKSzMrIV4R\ntY8MBda0pZUrWpoFDH1Z5JgRtqiR1mM7Xw9SP5mOKka93j3owu5lY4nGXCOMTlwG\n4+EAVnTJbym5JlU+niDY/u2F2Jx3eT/7zp/wilddAoGAdCzR+KjIccMPlgN9rfPU\nQIoXuWZFWnUvTSSO5Vw9LOb3eZsYbXUhL9K3bjTr8okI8umr3io713G5F3Be4Js3\nbym0AHNjiaIvefFmzfKG1O9py5DMaxHMUkzexQF6rVJeaHR+nHVKz9P3aEEZM/zo\nDZ1KXsTM2ooOyuKVF6wz+80=\n-----END PRIVATE KEY-----\n",
+  "client_email": "abbaco-api-282309@appspot.gserviceaccount.com",
+  "client_id": "114821875983656121128",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/abbaco-api-282309%40appspot.gserviceaccount.com"
+}
